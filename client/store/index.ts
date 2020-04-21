@@ -10,15 +10,16 @@ export const state = (): IndexInterface => ({
 })
 
 export const actions = {
-    async register(this: any, { commit }: any, { email, password }: {email: string, password: string}) {
-        const login = await this.$axios.$post('/users', {
+    async signup(this: any, { commit }: any, { name, email, password }: {name: string, email: string, password: string}) {
+        const login = await this.$axios.$post('/signup', {
+            name: name,
             email: email,
             password: password
         })
         commit('setLogin', login)
     },
     async login(this: any, { commit }: any, { email, password }: {email: string, password: string}) {
-        const login = await this.$axios.$get('/users', {
+        const login = await this.$axios.$post('/users', {
             email: email,
             password: password
         })

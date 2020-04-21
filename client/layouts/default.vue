@@ -7,7 +7,7 @@
         </div>
         <div class="right-box">
           <div class="buttons">
-            <a class="btn btn-success" href="/register">ユーザ登録</a>
+            <a class="btn btn-success" href="/signup">ユーザ登録</a>
             <a class="btn" href="/login">ログイン</a>
           </div>
         </div>

@@ -3,11 +3,11 @@
     <form @submit.prevent="register">
       <div class="form-group">
         <label for="email">メールアドレス</label>
-        <input type="text" id="email" class="form-control">
+        <input type="text" id="email" class="form-control" v-model="email">
       </div>
       <div class="form-group">
         <label for="password">パスワード</label>
-        <input type="password" id="password" class="form-control">
+        <input type="password" id="password" class="form-control" v-model="password">
       </div>
       <button type="submit">登録</button>
     </form>
@@ -16,7 +16,7 @@
 
 <script lang="ts">
 export default {
-  date() {
+  data() {
     return {
       email: null,
       password: null
@@ -24,7 +24,8 @@ export default {
   },
   methods: {
     register: function (this: any) {
-      this.$store.dispatch('register', {
+      this.$store.dispatch('signup', {
+        name: this.name,
         email: this.email,
         password: this.password
       })
