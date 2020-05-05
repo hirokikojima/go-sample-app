@@ -1,9 +1,14 @@
+/* common */
 .bg-darkcyan {
     background: #008b8b;
 }
 
 .section, .footer {
     margin-top: 48px;
+}
+
+.section-helf {
+    margin-top: 24px;
 }
 
 .list-title {
@@ -13,13 +18,63 @@
     padding: 2px 10px 10px;
 }
 
-.service .title {
+/* service-list */
+.list-item-service {
+    display: flex;
+}
+.list-item-service .icon {
+    margin-right: 8px;
+    width: 62px;
+}
+.list-item-service .body {
+
+}
+
+.list-item-service .title {
     font-size: 1rem;
     font-weight: bold;
 }
-.service .description .date {
+.list-item-service .description .date {
     font-size: 0.8rem;
 }
-.service .description .user-name {
+.list-item-service .description .user-name {
     font-size: 0.8rem;
+}
+
+/* log-list */
+.list-item-log {
+    display: flex;
+}
+.list-item-log .icon {
+    margin-right: 8px;
+    width: 62px;
+}
+.list-item-log .body {
+
+}
+
+.list-item-log .title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.list-item-log .description .date {
+    font-size: 0.8rem;
+}
+.list-item-log .description .service-name {
+    font-size: 0.8rem;
+}
+.list-item-log .description .user-name {
+    font-size: 0.8rem;
+}
+
+/* profile */
+.profile .img-area {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.profile .img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
 }

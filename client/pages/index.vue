@@ -5,11 +5,11 @@
         <h4 class="list-title">人気サービスランキング</h4>
         <ul class="list-group">
           <nuxt-link class="list-group-item" tag="li" to="/user/service">
-            <div class="row service">
-              <div class="col-md-4 icon">
+            <div class="list-item-service">
+              <div class="icon">
                 <img src="~/assets/image/no_image.png" width="62" height="62" />
               </div>
-              <div class="col-md-8">
+              <div class="body">
                 <h4 class="title">サービス名</h4>
                 <p class="description">
                   <span class="date">2020-05-01</span>
@@ -19,11 +19,11 @@
             </div>
           </nuxt-link>
           <nuxt-link class="list-group-item" tag="li" to="/user/service">
-            <div class="row service">
-              <div class="col-md-4 icon">
+            <div class="list-item-service">
+              <div class="icon">
                 <img src="~/assets/image/no_image.png" width="62" height="62" />
               </div>
-              <div class="col-md-8">
+              <div class="body">
                 <h4 class="title">サービス名</h4>
                 <p class="description">
                   <span class="date">2020-05-01</span>
@@ -38,11 +38,11 @@
         <h4 class="list-title">新着情報</h4>
         <ul class="list-group">
           <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-            <div class="row log">
-              <div class="col-md-2 icon">
+            <div class="list-item-log">
+              <div class="icon">
                 <img src="~/assets/image/no_image.png" width="62" height="62" />
               </div>
-              <div class="col-md=10">
+              <div class="body">
                 <h4 class="title">ログ名</h4>
                 <p class="description">
                   <span class="date">2020-05-01</span>
@@ -53,11 +53,11 @@
             </div>
           </nuxt-link>
           <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-            <div class="row log">
-              <div class="col-md-2 icon">
+            <div class="list-item-log">
+              <div class="icon">
                 <img src="~/assets/image/no_image.png" width="62" height="62" />
               </div>
-              <div class="col-md=10">
+              <div class="body">
                 <h4 class="title">ログ名</h4>
                 <p class="description">
                   <span class="date">2020-05-01</span>
@@ -68,11 +68,11 @@
             </div>
           </nuxt-link>
           <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-            <div class="row log">
-              <div class="col-md-2 icon">
+            <div class="list-item-log">
+              <div class="icon">
                 <img src="~/assets/image/no_image.png" width="62" height="62" />
               </div>
-              <div class="col-md=10">
+              <div class="body">
                 <h4 class="title">ログ名</h4>
                 <p class="description">
                   <span class="date">2020-05-01</span>
