@@ -1,23 +1,25 @@
 <template>
   <div class="wrapper">
     <header>
-      <div class="container">
-        <div class="left-box">
-          <div class="logo"></div>
-        </div>
-        <div class="right-box">
-          <div class="buttons">
-            <a class="btn btn-success" href="/signup">ユーザ登録</a>
-            <a class="btn" href="/login">ログイン</a>
-          </div>
-        </div>
-      </div>
+      <Header />
     </header>
-    <div>
+    <main>
       <nuxt />
-    </div>
+    </main>
+    <footer>
+      <Footer />
+    </footer>
   </div>
 </template>
 
-<style>
-</style>
+<script lang="ts">
+import Header from '~/components/common/Header.vue'
+import Footer from '~/components/common/Footer.vue'
+
+export default ({
+  components: {
+    Header,
+    Footer
+  }
+})
+</script>

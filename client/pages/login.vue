@@ -9,7 +9,7 @@
         <label for="password">パスワード</label>
         <input type="password" id="password" class="form-control">
       </div>
-      <button type="submit">登録</button>
+      <button type="submit">ログイン</button>
     </form>
   </div>
 </template>

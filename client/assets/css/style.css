@@ -1,0 +1,25 @@
+.bg-darkcyan {
+    background: #008b8b;
+}
+
+.section, .footer {
+    margin-top: 48px;
+}
+
+.list-title {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 2px 10px 10px;
+}
+
+.service .title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.service .description .date {
+    font-size: 0.8rem;
+}
+.service .description .user-name {
+    font-size: 0.8rem;
+}
