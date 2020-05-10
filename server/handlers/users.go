@@ -4,13 +4,13 @@ import (
     "net/http"
 	"github.com/labstack/echo"
 	"github.com/hirokikojima/go-sample-app/models"
-	"github.com/hirokikojima/go-sample-app/utilities"
+	"github.com/hirokikojima/go-sample-app/utilities/database"
 	"log"
 )
 
 func CreateUser(c echo.Context) error {
 	log.Printf("create user")
-	db := utilities.ConnectDatabase()
+	db := database.ConnectDatabase()
 	defer db.Close()
 	user := models.User{ Name: "Gopher" }
 	db.Create(&user)
@@ -18,7 +18,7 @@ func CreateUser(c echo.Context) error {
 }
 
 func GetUser(c echo.Context) error {
-	db := utilities.ConnectDatabase()
+	db := database.ConnectDatabase()
 	defer db.Close()
 	user := models.User{}
 	db.First(&user, c.Param("id"))

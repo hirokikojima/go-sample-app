@@ -2,13 +2,7 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/hirokikojima/go-sample-app/utilities"
 )
-
-func init() {
-	db := utilities.ConnectDatabase()
-	db.AutoMigrate(&User{})
-}
 
 type User struct {
 	gorm.Model
@@ -17,14 +11,18 @@ type User struct {
 	Password string `json:password`
 }
 
-func CreateUser(user *User) {
-	db := utilities.ConnectDatabase()
-	defer db.Close()
+func (user *User)CreateUser(db *gorm.DB) {
 	db.Create(&user)
 }
 
-func FindUser(u *User) User {
+func (u *User)FindUser(db *gorm.DB) User {
 	var user User
-	db.Where(u).First(&user)
+	db.Where("email = ?", u.ID).First(&user)
+	return user
+}
+
+func (u *User) FindUserByEmail(db *gorm.DB) User {
+	var user User
+	db.Where("email = ?", u.Email).First(&user)
 	return user
 }
