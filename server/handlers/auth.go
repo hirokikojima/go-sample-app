@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"log"
     "net/http"
 	"github.com/labstack/echo"
 	"github.com/hirokikojima/go-sample-app/models"
@@ -46,8 +45,6 @@ func Login(c echo.Context) error {
 	}
 
 	u := user.FindUserByEmail(db)
-	log.Printf("%v", u)
-	log.Printf("%v", user)
 	if !authorizer.ComparePassword(u.Password, user.Password) {
 		return &echo.HTTPError{
             Code:    http.StatusUnauthorized,
@@ -55,5 +52,12 @@ func Login(c echo.Context) error {
         }
 	}
 
-    return c.JSON(http.StatusOK, user)
+	token, err := authorizer.GenerateSignedToken(&u)
+	if err != nil {
+		return err
+	}
+
+    return c.JSON(http.StatusOK, echo.Map{
+		"token": token,
+	})
 }
