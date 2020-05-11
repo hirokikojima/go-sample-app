@@ -19,7 +19,7 @@ export const actions = {
         commit('setLogin', login)
     },
     async login(this: any, { commit }: any, { email, password }: {email: string, password: string}) {
-        const login = await this.$axios.$post('/users', {
+        const login = await this.$axios.$post('/login', {
             email: email,
             password: password
         })

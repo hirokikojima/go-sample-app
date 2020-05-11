@@ -3,11 +3,11 @@
     <form @submit.prevent="login">
       <div class="form-group">
         <label for="email">メールアドレス</label>
-        <input type="text" id="email" class="form-control">
+        <input type="text" id="email" class="form-control" v-model="email">
       </div>
       <div class="form-group">
         <label for="password">パスワード</label>
-        <input type="password" id="password" class="form-control">
+        <input type="password" id="password" class="form-control" v-model="password">
       </div>
       <button type="submit">ログイン</button>
     </form>

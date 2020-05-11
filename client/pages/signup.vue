@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form @submit.prevent="register">
+    <form @submit.prevent="signup">
       <div class="form-group">
         <label for="email">メールアドレス</label>
         <input type="text" id="email" class="form-control" v-model="email">
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    register: function (this: any) {
+    signup: function (this: any) {
       this.$store.dispatch('signup', {
         name: this.name,
         email: this.email,

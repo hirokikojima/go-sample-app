@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"log"
     "net/http"
 	"github.com/labstack/echo"
 	"github.com/hirokikojima/go-sample-app/models"
@@ -45,11 +46,12 @@ func Login(c echo.Context) error {
 	}
 
 	u := user.FindUserByEmail(db)
-	
+	log.Printf("%v", u)
+	log.Printf("%v", user)
 	if !authorizer.ComparePassword(u.Password, user.Password) {
 		return &echo.HTTPError{
             Code:    http.StatusUnauthorized,
-            Message: "invalid name or password",
+            Message: "invalid email or password",
         }
 	}
 
