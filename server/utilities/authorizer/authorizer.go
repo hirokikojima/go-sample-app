@@ -4,6 +4,7 @@ import (
 	"time"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/hirokikojima/go-sample-app/models"
 )
@@ -43,4 +44,9 @@ func GenerateSignedToken(user *models.User) (string, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte("secret"))
+}
+
+func GetClaims(c echo.Context) *jwtCustomClaims {
+	user := c.Get("user").(*jwt.Token)
+	return user.Claims.(*jwtCustomClaims)
 }

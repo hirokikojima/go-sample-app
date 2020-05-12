@@ -20,6 +20,8 @@ func main() {
     guarded := e.Group("")
     guarded.Use(middleware.JWTWithConfig(authorizer.JwtConfig))
 
+    guarded.GET("/me", handlers.Me)
+
     e.POST("/users", handlers.CreateUser)
     e.GET("/users/:id", handlers.GetUser)
     e.PUT("/users/:id", handlers.UpdateUser)

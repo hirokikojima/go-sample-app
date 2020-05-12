@@ -1,7 +1,8 @@
 package handlers
 
 import (
-    "net/http"
+	"net/http"
+	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/hirokikojima/go-sample-app/models"
 	"github.com/hirokikojima/go-sample-app/utilities/authorizer"
@@ -60,4 +61,20 @@ func Login(c echo.Context) error {
     return c.JSON(http.StatusOK, echo.Map{
 		"token": token,
 	})
+}
+
+func Me(c echo.Context) error {
+	db := database.ConnectDatabase()
+	defer db.Close()
+
+	claims := authorizer.GetClaims(c)
+
+	u := models.User{
+		Model: gorm.Model{ID: claims.UID},
+	}
+
+	user := u.FindUser(db)
+	user.Password = ""
+
+	return c.JSON(http.StatusOK, user)
 }

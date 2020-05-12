@@ -17,7 +17,7 @@ func (user *User)CreateUser(db *gorm.DB) {
 
 func (u *User)FindUser(db *gorm.DB) User {
 	var user User
-	db.Where("email = ?", u.ID).First(&user)
+	db.Where("id = ?", u.ID).First(&user)
 	return user
 }
 
