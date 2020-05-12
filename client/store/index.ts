@@ -1,34 +1,44 @@
-import Login from "~/types/models/Login"
+import User from "~/types/models/User"
 import { EvalSourceMapDevToolPlugin } from "webpack"
 
 interface IndexInterface {
-    login: Login | null
+    me: User | null
 }
 
 export const state = (): IndexInterface => ({
-    login: null
+    me: null
 })
 
 export const actions = {
     async signup(this: any, { commit }: any, { name, email, password }: {name: string, email: string, password: string}) {
-        const login = await this.$axios.$post('/signup', {
+        const response = await this.$axios.$post('/signup', {
             name: name,
             email: email,
             password: password
         })
-        commit('setLogin', login)
+        this.$auth.signin(response.token)
     },
     async login(this: any, { commit }: any, { email, password }: {email: string, password: string}) {
-        const login = await this.$axios.$post('/login', {
+        const response = await this.$axios.$post('/login', {
             email: email,
             password: password
         })
-        commit('setLogin', login)
+        this.$auth.signin(response.token)
+    },
+    async logout(this: any, { commit }: any) {
+        this.$auth.signout()
+    },
+    async me(this: any, { commit }: any) {
+        const response = await this.$axios.$get('/me')
+
+        if (response.status) {
+            commit('setMe', response.data)
+        }
     }
 }
 
 export const mutations = {
-    setLogin(state: IndexInterface, login: Login): void {
-        state.login = login
+    setMe(state: IndexInterface, me: User): void {
+        state.me = me
     }
 }

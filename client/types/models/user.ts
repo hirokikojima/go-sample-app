@@ -1,7 +1,7 @@
-type Login = {
+type User = {
     id: string,
     name: string,
     email: string
 }
 
-export default Login
+export default user

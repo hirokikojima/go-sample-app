@@ -2,7 +2,8 @@ export let axios: any
 
 export default ({ store, $axios }: { store: any, $axios: any }) => {
   $axios.onRequest((config: any) => {
-    config.headers.common['Authorization'] = `Bearer token`
+    const token = store.$auth.getToken()
+    config.headers.common['Authorization'] = `Bearer ${token}`
     config.headers.common['Accept'] = 'application/json'
   })
 
