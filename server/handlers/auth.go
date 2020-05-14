@@ -5,6 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/hirokikojima/go-sample-app/models"
+	"github.com/hirokikojima/go-sample-app/presenters"
 	"github.com/hirokikojima/go-sample-app/utilities/authorizer"
 	"github.com/hirokikojima/go-sample-app/utilities/database"
 )
@@ -31,9 +32,15 @@ func Signup(c echo.Context) error {
 	}
 	user.Password = *encrypted
 	user.CreateUser(db)
-	user.Password = ""
 
-	return c.JSON(http.StatusOK, user)
+	token, err := authorizer.GenerateSignedToken(user)
+	if err != nil {
+		return err
+	}
+
+    return c.JSON(http.StatusOK, echo.Map{
+		"token": token,
+	})
 }
 
 func Login(c echo.Context) error {
@@ -74,7 +81,9 @@ func Me(c echo.Context) error {
 	}
 
 	user := u.FindUser(db)
-	user.Password = ""
 
-	return c.JSON(http.StatusOK, user)
+	presenter := presenters.NewUserPresenter(user)
+	response  := presenter.Convert()
+
+	return c.JSON(http.StatusOK, response)
 }

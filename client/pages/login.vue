@@ -16,18 +16,20 @@
 
 <script lang="ts">
 export default {
-  date() {
+  data() {
     return {
       email: null,
       password: null
     }
   },
   methods: {
-    login: function (this: any) {
-      this.$store.dispatch('login', {
+    login: async function (this: any) {
+      await this.$store.dispatch('login', {
         email: this.email,
         password: this.password
       })
+
+      this.$nuxt.$emit('signedIn')
     }
   }
 }

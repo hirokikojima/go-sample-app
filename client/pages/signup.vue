@@ -23,12 +23,14 @@ export default {
     }
   },
   methods: {
-    signup: function (this: any) {
-      this.$store.dispatch('signup', {
+    signup: async function (this: any) {
+      await this.$store.dispatch('signup', {
         name: this.name,
         email: this.email,
         password: this.password
       })
+
+      this.$nuxt.$emit('signedIn')
     }
   }
 }

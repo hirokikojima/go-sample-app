@@ -29,11 +29,9 @@ export const actions = {
         this.$auth.signout()
     },
     async me(this: any, { commit }: any) {
-        const response = await this.$axios.$get('/me')
+        const user = await this.$axios.$get('/me')
 
-        if (response.status) {
-            commit('setMe', response.data)
-        }
+        commit('setMe', user)
     }
 }
 

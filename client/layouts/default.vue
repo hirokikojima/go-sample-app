@@ -20,6 +20,14 @@ export default ({
   components: {
     Header,
     Footer
+  },
+  mounted: function(this: any) {
+    this.$store.dispatch('me')
+
+    // サインインした場合
+    this.$nuxt.$on('signedIn', function(this: any) {
+      this.$store.dispatch('me')
+    })
   }
 })
 </script>

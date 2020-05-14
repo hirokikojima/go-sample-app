@@ -4,12 +4,12 @@
       <nuxt-link class="navbar-brand" to="/">
         Go-Sample-App
       </nuxt-link>
-      <div v-if="!isSignedIn">
+      <div v-if="!me">
         <nuxt-link class="btn btn-light" to="/login">ログイン</nuxt-link>
         <nuxt-link class="btn btn-outline-light" to="/signup">ユーザ登録</nuxt-link>
       </div>
       <div v-else>
-        <a class="btn btn-outline-light" @click="me">Me</a>
+        <nuxt-link class="btn btn-outline-light" to="/user">{{ me.name }}</nuxt-link>
       </div>
     </div>
   </nav>
@@ -18,13 +18,8 @@
 <script lang="ts">
 export default ({
   computed: {
-    isSignedIn: function(this: any) {
-      return !! this.$auth.getToken()
-    }
-  },
-  methods: {
-    me: function (this: any) {
-      this.$store.dispatch('me')
+    me: function(this: any) {
+      return this.$store.state.me
     }
   }
 })
