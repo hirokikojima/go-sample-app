@@ -46,6 +46,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
+    '@nuxtjs/markdownit',
   ],
   /*
   ** axios options
@@ -53,6 +54,12 @@ export default {
   axios: {
     withCredentials: true,
     baseURL: 'http://localhost:1323'
+  },
+  /**
+  * markdownit options
+  */
+  markdownit: {
+    injected: true
   },
   /*
   ** Build configuration
@@ -62,6 +69,60 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  /**
+  * Router configuration
+  */
+  router: {
+    extendRoutes (routes, resolve) {
+      /**
+       * log editor
+       */
+      routes.push({
+        path: '/users/:id/services/:id/logs/:id/editor',
+        component: resolve(__dirname, 'pages/logs/editor.vue')
+      })
+
+      /**
+       * log index
+       */
+      routes.push({
+        path: '/users/:id/services/:id/logs/:id',
+        component: resolve(__dirname, 'pages/logs/index.vue')
+      })
+
+      /**
+       * service editor
+       */
+      routes.push({
+        path: '/users/:id/services/:id/editor',
+        component: resolve(__dirname, 'pages/services/editor.vue')
+      })
+
+      /**
+       * service index
+       */
+      routes.push({
+        path: '/users/:id/services/:id',
+        component: resolve(__dirname, 'pages/services/index.vue')
+      })
+
+      /**
+       * user editor
+       */
+      routes.push({
+        path: '/users/:id/editor',
+        component: resolve(__dirname, 'pages/users/editor.vue')
+      })
+
+      /**
+       * user index
+       */
+      routes.push({
+        path: '/users/:id',
+        component: resolve(__dirname, 'pages/users/index.vue')
+      })
     }
   }
 }

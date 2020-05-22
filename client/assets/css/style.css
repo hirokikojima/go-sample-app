@@ -7,6 +7,28 @@
     background: #374149;
 }
 
+.btn-darkcyan {
+    color: #f8f9fa;
+    background: #008b8b;
+    border-color: #008b8b;
+}
+
+.btn-outline-darkcyan {
+    color: #008b8b;
+    border-color: #008b8b;
+}
+
+.btn-darkgray {
+    color: #f8f9fa;
+    background: #374149;
+    border-color: #374149;
+}
+
+.btn-outline-darkgray {
+    color: #f8f9fa;
+    border-color: #374149;
+}
+
 .section, .footer {
     margin-top: 48px;
 }
