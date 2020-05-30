@@ -3,15 +3,15 @@
     <div class="row">
       <div class="col-md-6 order-md-2 section">
         <div class="section-helf">
-          <h4>{{ name }}</h4>
-          <div class="description" v-html="$md.render(description || '')" />
+          <h4>{{ title }}</h4>
+          <div class="description" v-html="$md.render(body || '')" />
         </div>
       </div>
       <div class="col-md-6 order-md-1 section">
         <form @submit.prevent="submit">
           <div class="form-group">
-            <label for="name">サービス名</label>
-            <input type="text" id="name" class="form-control" v-model="name">
+            <label for="title">サービス名</label>
+            <input type="text" id="title" class="form-control" v-model="title">
           </div>
           <div class="form-group">
             <label for="thumbnail">サムネイル</label>
@@ -21,8 +21,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="description">本文</label>
-            <textarea rows="10" id="description" class="form-control" v-model="description"></textarea>
+            <label for="body">本文</label>
+            <textarea rows="10" id="body" class="form-control" v-model="body"></textarea>
           </div>
           <button type="submit" class="btn btn-outline-darkcyan btn-block">下書き</button>
           <button type="submit" class="btn btn-darkcyan btn-block">追加</button>
@@ -36,8 +36,9 @@
 export default {
   data() {
     return {
-      name: null,
-      description: null
+      title: null,
+      thumbnail: null,
+      body: null
     }
   },
   methods: {
@@ -45,6 +46,11 @@ export default {
       const image = e.target.files || e.dataTransfer.files
     },
     submit: async function (this: any) {
+      await this.$store.dispatch('service/create', {
+        title: this.title,
+        thumbnail: this.thumbnail,
+        body: this.body
+      })
     }
   }
 }

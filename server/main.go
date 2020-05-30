@@ -21,6 +21,9 @@ func main() {
     guarded.Use(middleware.JWTWithConfig(authorizer.JwtConfig))
 
     guarded.GET("/me", handlers.Me)
+    guarded.GET("/service", handlers.GetServices)
+    guarded.GET("/service/:id", handlers.GetServices)
+    guarded.POST("/service", handlers.CreateService)
 
     e.POST("/users", handlers.CreateUser)
     e.GET("/users/:id", handlers.GetUser)
