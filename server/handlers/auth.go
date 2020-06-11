@@ -5,7 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 	"github.com/hirokikojima/go-sample-app/models"
-	"github.com/hirokikojima/go-sample-app/presenters"
+	"github.com/hirokikojima/go-sample-app/responses"
 	"github.com/hirokikojima/go-sample-app/utilities/authorizer"
 	"github.com/hirokikojima/go-sample-app/utilities/database"
 )
@@ -82,8 +82,7 @@ func Me(c echo.Context) error {
 
 	user := u.FindUser(db)
 
-	presenter := presenters.NewUserPresenter(user)
-	response  := presenter.Convert()
+	response := responses.NewUserResponse(user)
 
 	return c.JSON(http.StatusOK, response)
 }

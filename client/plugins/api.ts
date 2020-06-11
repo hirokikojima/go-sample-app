@@ -1,5 +1,29 @@
 import { axios } from './axios'
 
-export default {
-  
+export class Api {
+  private axios: any;
+
+  constructor(axios: any) {
+    this.axios = axios
+  }
+
+  /**
+   * ユーザ情報を取得する
+   * @param id 
+   */
+  public getUser(id: number) {
+    return this.axios.$get('/user/' + id);
+  }
+
+  /**
+   * ユーザのサービス一覧を取得する
+   * @param userId 
+   */
+  public getServicesByUserId(userId: number) {
+    return this.axios.$get('/service/' + userId)
+  }
+}
+
+export default function ({ $axios }: { $axios: any }, inject: any) {
+  inject('api', new Api($axios))
 }

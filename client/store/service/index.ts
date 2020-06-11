@@ -1,4 +1,13 @@
+import Service from "~/types/models/Service"
 import { EvalSourceMapDevToolPlugin } from "webpack"
+
+interface ServiceInterface {
+    service: Service | null
+}
+
+export const state = (): ServiceInterface => ({
+    service: null
+})
 
 export const actions = {
     async create(this: any, { commit }: any, { title, thumbnail, body }: {title: string, thumbnail: File, body: string}) {
@@ -12,5 +21,8 @@ export const actions = {
         })
 
         return response
+    },
+    async getServices(this: any, { commit }: any, { userId }: { userId: number }) {
+        const response = await this.$axios.$get('/service/' + userId)
     }
 }

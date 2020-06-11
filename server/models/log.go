@@ -11,6 +11,12 @@ type Log struct {
 	Body      string `json:body`
 }
 
-func (log *Log) CreateService(db *gorm.DB) {
+func (log *Log) CreateLog(db *gorm.DB) {
 	db.Create(&log)
+}
+
+func (log *Log) GetLogs(db *gorm.DB) []Log {
+	logs := []Log{}
+	db.Find(&logs)
+	return logs
 }

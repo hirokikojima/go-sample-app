@@ -16,19 +16,16 @@ func main() {
 
     e.POST("/signup", handlers.Signup)
     e.POST("/login", handlers.Login)
-    
+    e.GET("/user", handlers.GetUsers)
+    e.GET("/user/:id", handlers.GetUser)
+    e.GET("/service", handlers.GetServices)
+    e.GET("/service/:id", handlers.GetServices)
+
     guarded := e.Group("")
     guarded.Use(middleware.JWTWithConfig(authorizer.JwtConfig))
 
     guarded.GET("/me", handlers.Me)
-    guarded.GET("/service", handlers.GetServices)
-    guarded.GET("/service/:id", handlers.GetServices)
     guarded.POST("/service", handlers.CreateService)
-
-    e.POST("/users", handlers.CreateUser)
-    e.GET("/users/:id", handlers.GetUser)
-    e.PUT("/users/:id", handlers.UpdateUser)
-    e.DELETE("/users/:id", handlers.DeleteUser)
 
     e.Logger.Fatal(e.Start(":1323"))
 }

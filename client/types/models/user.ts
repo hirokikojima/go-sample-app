@@ -4,4 +4,4 @@ type User = {
     email: string
 }
 
-export default user
+export default User

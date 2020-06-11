@@ -30,6 +30,7 @@ export default {
   */
   plugins: [
     '@/plugins/auth.ts',
+    '@/plugins/api.ts',
     '@/plugins/axios.ts'
   ],
   /*
