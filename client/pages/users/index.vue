@@ -34,97 +34,19 @@
         </div>
       </div>
       <div class="col-md-8 order-md-2 section">
-        <h4 class="list-title">サービス</h4>
-        <div class="card section-helf">
-          <div class="card-body">
-            <nuxt-link tag="a" to="/user/service">
-              <div class="list-item-service" style="margin-bottom: 0.5rem;">
-                <div class="icon">
-                  <img src="~/assets/image/no_image.png" width="62" height="62" />
-                </div>
-                <div class="body">
-                  <h4 class="title">サービス名</h4>
-                  <p class="description">
-                    <span class="date">2020-05-01</span>
-                    <span class="user-name">ユーザ名</span>
-                  </p>
-                </div>
-              </div>
-            </nuxt-link>
-
-            <ul class="list-group">
-              <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-                <div class="list-item-log">
-                  <div class="body">
-                    <h4 class="title">ログ名</h4>
-                    <p class="description">
-                      <span class="date">2020-05-01</span>
-                    </p>
-                  </div>
-                </div>
-              </nuxt-link>
-              <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-                <div class="list-item-log">
-                  <div class="body">
-                    <h4 class="title">ログ名</h4>
-                    <p class="description text-right">
-                      <span class="date">2020-05-01</span>
-                    </p>
-                  </div>
-                </div>
-              </nuxt-link>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card section-helf">
-          <div class="card-body">
-            <nuxt-link tag="a" to="/user/service">
-              <div class="list-item-service" style="margin-bottom: 0.5rem;">
-                <div class="icon">
-                  <img src="~/assets/image/no_image.png" width="62" height="62" />
-                </div>
-                <div class="body">
-                  <h4 class="title">サービス名</h4>
-                  <p class="description">
-                    <span class="date">2020-05-01</span>
-                    <span class="user-name">ユーザ名</span>
-                  </p>
-                </div>
-              </div>
-            </nuxt-link>
-
-            <ul class="list-group">
-              <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-                <div class="list-item-log">
-                  <div class="body">
-                    <h4 class="title">ログ名</h4>
-                    <p class="description">
-                      <span class="date">2020-05-01</span>
-                    </p>
-                  </div>
-                </div>
-              </nuxt-link>
-              <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-                <div class="list-item-log">
-                  <div class="body">
-                    <h4 class="title">ログ名</h4>
-                    <p class="description text-right">
-                      <span class="date">2020-05-01</span>
-                    </p>
-                  </div>
-                </div>
-              </nuxt-link>
-            </ul>
-          </div>
-        </div>
+        <ServiceList :title="サービス" :services="services" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import ServiceList from '~/components/service/List.vue'
+
 export default ({
+  components: {
+    ServiceList
+  },
   data() {
     return {
       user: null,

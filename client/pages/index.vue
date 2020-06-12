@@ -52,62 +52,26 @@
         </div>
       </div>
       <div class="col-md-8 order-md-1 section">
-        <h4 class="list-title">新着情報</h4>
-        <ul class="list-group">
-          <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-            <div class="list-item-log">
-              <div class="icon">
-                <img src="~/assets/image/no_image.png" width="62" height="62" />
-              </div>
-              <div class="body">
-                <h4 class="title">ログ名</h4>
-                <p class="description">
-                  <span class="date">2020-05-01</span>
-                  <span class="service-name">サービス名</span>
-                  <span class="user-name">ユーザ名</span>
-                </p>
-              </div>
-            </div>
-          </nuxt-link>
-          <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-            <div class="list-item-log">
-              <div class="icon">
-                <img src="~/assets/image/no_image.png" width="62" height="62" />
-              </div>
-              <div class="body">
-                <h4 class="title">ログ名</h4>
-                <p class="description">
-                  <span class="date">2020-05-01</span>
-                  <span class="service-name">サービス名</span>
-                  <span class="user-name">ユーザ名</span>
-                </p>
-              </div>
-            </div>
-          </nuxt-link>
-          <nuxt-link class="list-group-item" tag="li" to="/user/service/log">
-            <div class="list-item-log">
-              <div class="icon">
-                <img src="~/assets/image/no_image.png" width="62" height="62" />
-              </div>
-              <div class="body">
-                <h4 class="title">ログ名</h4>
-                <p class="description">
-                  <span class="date">2020-05-01</span>
-                  <span class="service-name">サービス名</span>
-                  <span class="user-name">ユーザ名</span>
-                </p>
-              </div>
-            </div>
-          </nuxt-link>
-        </ul>
+        <ServiceList :title="サービス" :services="services" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
+import ServiceList from '~/components/service/List.vue'
+export default({
+  components: {
+    ServiceList
+  },
+  data() {
+    return {
+      user: null,
+      services: null
+    }
+  },
+  async mounted(this: any) {
+    this.services = await this.$api.getServices()
+  }
 })
 </script>

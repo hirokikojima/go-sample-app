@@ -16,6 +16,14 @@ export class Api {
   }
 
   /**
+   * サービス一覧を取得する
+   * @param userId 
+   */
+  public getServices() {
+    return this.axios.$get('/service')
+  }
+
+  /**
    * ユーザのサービス一覧を取得する
    * @param userId 
    */
