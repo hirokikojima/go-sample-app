@@ -9,7 +9,8 @@
         <nuxt-link class="btn btn-outline-light" to="/signup">ユーザ登録</nuxt-link>
       </div>
       <div v-else>
-        <nuxt-link class="btn btn-outline-light" to="/user">{{ me.name }}</nuxt-link>
+        <nuxt-link class="btn btn-light" :to="`/users/${me.id}/services/new`">サービスを追加</nuxt-link>
+        <nuxt-link class="btn btn-outline-light" :to="`/users/${me.id}`">{{ me.name }}</nuxt-link>
       </div>
     </div>
   </nav>

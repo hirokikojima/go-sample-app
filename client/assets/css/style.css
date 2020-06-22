@@ -60,7 +60,7 @@
 }
 
 .list-item-user .body {
-
+    flex: 1;
 }
 
 .list-item-user .title {
@@ -77,7 +77,7 @@
     width: 62px;
 }
 .list-item-service .body {
-
+    flex: 1;
 }
 
 .list-item-service .title {
@@ -100,7 +100,7 @@
     width: 62px;
 }
 .list-item-log .body {
-
+    flex: 1;
 }
 
 .list-item-log .title {

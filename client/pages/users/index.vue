@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="col-md-8 order-md-2 section">
-        <ServiceList :title="サービス" :services="services" />
+        <ServiceList title="サービス" :services="services" :editable="isMyPage" />
       </div>
     </div>
   </div>
@@ -51,6 +51,14 @@ export default ({
     return {
       user: null,
       services: null
+    }
+  },
+  computed: {
+    me: function(this: any) {
+      return this.$store.state.me
+    },
+    isMyPage: function(this: any): boolean {
+      return this.me ? this.user.id === this.me.id : false
     }
   },
   async mounted(this: any) {

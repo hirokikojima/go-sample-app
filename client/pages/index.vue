@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="col-md-8 order-md-1 section">
-        <ServiceList :title="サービス" :services="services" />
+        <ServiceList title="タイムライン" :services="services" />
       </div>
     </div>
   </div>

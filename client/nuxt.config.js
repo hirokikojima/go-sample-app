@@ -78,10 +78,18 @@ export default {
   router: {
     extendRoutes (routes, resolve) {
       /**
-       * log editor
+       * log new
        */
       routes.push({
-        path: '/users/:id/services/:id/logs/:id/editor',
+        path: '/users/:id/services/:id/logs/new',
+        component: resolve(__dirname, 'pages/logs/editor.vue')
+      })
+      
+      /**
+       * log edit
+       */
+      routes.push({
+        path: '/users/:id/services/:id/logs/:id/edit',
         component: resolve(__dirname, 'pages/logs/editor.vue')
       })
 
@@ -94,10 +102,18 @@ export default {
       })
 
       /**
-       * service editor
+       * service new
        */
       routes.push({
-        path: '/users/:id/services/:id/editor',
+        path: '/users/:id/services/new',
+        component: resolve(__dirname, 'pages/services/editor.vue')
+      })
+      
+      /**
+       * service edit
+       */
+      routes.push({
+        path: '/users/:id/services/:id/edit',
         component: resolve(__dirname, 'pages/services/editor.vue')
       })
 
@@ -110,10 +126,10 @@ export default {
       })
 
       /**
-       * user editor
+       * user edit
        */
       routes.push({
-        path: '/users/:id/editor',
+        path: '/users/:id/edit',
         component: resolve(__dirname, 'pages/users/editor.vue')
       })
 
