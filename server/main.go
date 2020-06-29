@@ -14,6 +14,7 @@ func main() {
     e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
+    e.Static("/public", "public")
     e.POST("/signup", handlers.Signup)
     e.POST("/login", handlers.Login)
     e.GET("/user", handlers.GetUsers)
@@ -26,6 +27,7 @@ func main() {
 
     guarded.GET("/me", handlers.Me)
     guarded.POST("/service", handlers.CreateService)
+    guarded.PUT("/service/:id", handlers.UpdateService)
 
     e.Logger.Fatal(e.Start(":1323"))
 }

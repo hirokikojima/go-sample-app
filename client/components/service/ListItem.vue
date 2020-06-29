@@ -11,16 +11,18 @@
             <h4 class="title">
               <nuxt-link tag="a" :to="`/users/${service.UserID}/services/${service.ID}`">{{ service.Title }}</nuxt-link>
             </h4>
-            <b-dropdown variant="outline-dark" size="sm" right>
-              <b-dropdown-item :to="`/users/${service.UserId}/services/${service.ID}/edit`">編集</b-dropdown-item>
+            <b-dropdown variant="outline-dark" size="sm" right v-if="editable">
+              <b-dropdown-item :to="`/users/${service.UserID}/services/${service.ID}/edit`">編集</b-dropdown-item>
               <b-dropdown-item>削除</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item :to="`/users/${service.UserId}/services/${service.ID}/logs/new`">ログを追加</b-dropdown-item>
+              <b-dropdown-item :to="`/users/${service.UserID}/services/${service.ID}/logs/new`">ログを追加</b-dropdown-item>
             </b-dropdown>
           </div>
           <p class="description">
             <span class="date">{{ service.CreatedAt }}</span>
-            <span class="user-name">{{ service.User.Name }}</span>
+            <span class="user-name">
+              <nuxt-link tag="a" :to="`/users/${service.UserID}`">{{ service.User.Name }}</nuxt-link>
+            </span>
           </p>
         </div>
       </div>

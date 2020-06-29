@@ -22,6 +22,18 @@ export const actions = {
 
         return response
     },
+    async update(this: any, { commit }: any, { id, title, thumbnail, body }: { id: number, title: string, thumbnail: File, body: string}) {
+        let formData = new FormData
+        formData.append('title', title)
+        formData.append('thumbnail', thumbnail)
+        formData.append('body', body)
+        
+        const response = await this.$axios.$put(`/service/${id}`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        })
+
+        return response
+    },
     async getServices(this: any, { commit }: any, { userId }: { userId: number }) {
         const response = await this.$axios.$get('/service/' + userId)
     }

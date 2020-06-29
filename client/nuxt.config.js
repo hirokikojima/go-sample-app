@@ -81,7 +81,7 @@ export default {
        * log new
        */
       routes.push({
-        path: '/users/:id/services/:id/logs/new',
+        path: '/users/:user_id/services/:service_id/logs/new',
         component: resolve(__dirname, 'pages/logs/editor.vue')
       })
       
@@ -89,7 +89,7 @@ export default {
        * log edit
        */
       routes.push({
-        path: '/users/:id/services/:id/logs/:id/edit',
+        path: '/users/:user_id/services/:service_id/logs/:log_id/edit',
         component: resolve(__dirname, 'pages/logs/editor.vue')
       })
 

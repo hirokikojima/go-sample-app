@@ -17,7 +17,7 @@
             <label for="thumbnail">サムネイル</label>
             <div class="custom-file">
               <input type="file" id="thumbnail" class="custom-file-input" accept="image/jpeg, image/png" @change="onImageChange">
-              <label class="custom-file-label" for="thumbnail">Choose file</label>
+              <label class="custom-file-label" for="thumbnail">{{ this.thumbnail ? this.thumbnail.name : 'ファイルを選択' }}</label>
             </div>
           </div>
           <div class="form-group">
@@ -36,6 +36,7 @@
 export default {
   data() {
     return {
+      id: null,
       title: null,
       thumbnail: null,
       body: null
@@ -43,10 +44,20 @@ export default {
   },
   methods: {
     onImageChange: function(this: any, e: any) {
-      const image = e.target.files || e.dataTransfer.files
+      this.thumbnail = e.target.files[0] || e.dataTransfer.files[0]
     },
     submit: async function (this: any) {
+      this.id ? this.update() : this.create()
+    },
+    create: async function (this: any) {
       await this.$store.dispatch('service/create', {
+        title: this.title,
+        thumbnail: this.thumbnail,
+        body: this.body
+      })
+    },
+    update: async function (this: any) {
+      await this.$store.dispatch('service/update', {
         title: this.title,
         thumbnail: this.thumbnail,
         body: this.body

@@ -8,7 +8,7 @@ import (
 	"github.com/hirokikojima/go-sample-app/utilities/database"
 )
 
-func GetLOGs(c echo.Context) error {
+func GetLogs(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
@@ -35,7 +35,7 @@ func CreateLog(c echo.Context) error {
 
 	cc := NewCustomContext(c)
 
-	// user := cc.CurrentUser(db)
+	user := cc.CurrentUser(db)
 
 	log := new(models.Log)
 	if err := c.Bind(log); err != nil {
