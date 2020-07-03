@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"github.com/jinzhu/gorm"
@@ -6,6 +6,29 @@ import (
 	"github.com/hirokikojima/go-sample-app/models"
 	"github.com/hirokikojima/go-sample-app/utilities/authorizer"
 )
+
+type AppHandler interface {
+	AuthHandler
+	UserHandler
+	ServiceHandler
+	LogHandler
+}
+
+type appHandler struct {
+	AuthHandler
+	UserHandler
+	ServiceHandler
+	LogHandler
+}
+
+func NewAppHandler(conn *gorm.DB) AppHandler {
+	appHandler := &appHandler{}
+	appHandler.AuthHandler = NewAuthHandler(conn)
+	appHandler.UserHandler = NewUserHandler(conn)
+	appHandler.ServiceHandler = NewServiceHandler(conn)
+	appHandler.LogHandler = NewLogHandler(conn)
+	return appHandler
+}
 
 type CustomContext struct {
 	echo.Context

@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"net/http"
@@ -10,7 +10,20 @@ import (
 	"github.com/hirokikojima/go-sample-app/utilities/database"
 )
 
-func GetUsers(c echo.Context) error {
+type UserHandler interface {
+	GetUsers(c echo.Context) error
+	GetUser(c echo.Context) error
+}
+
+type userHandler struct {
+	conn *gorm.DB
+}
+
+func NewUserHandler(conn *gorm.DB) UserHandler {
+	return &userHandler{conn}
+}
+
+func (h *userHandler) GetUsers(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
@@ -23,7 +36,7 @@ func GetUsers(c echo.Context) error {
 	return cc.JSON(http.StatusOK, users)
 }
 
-func GetUser(c echo.Context) error {
+func (h *userHandler) GetUser(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 

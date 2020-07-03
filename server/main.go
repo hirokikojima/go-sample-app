@@ -1,33 +1,34 @@
 package main
 
 import (
+    "flag"
+    "fmt"
     "github.com/labstack/echo"
-    "github.com/labstack/echo/middleware"
-    "github.com/hirokikojima/go-sample-app/handlers"
-    "github.com/hirokikojima/go-sample-app/utilities/authorizer"
+    "github.com/hirokikojima/go-sample-app/config"
+    "github.com/hirokikojima/go-sample-app/http/router"
+    "github.com/hirokikojima/go-sample-app/http/handler"
 )
 
 func main() {
+    isProduction := flag.Bool("production", false, "production is -production option require")
+
+    env := "local"
+    if *isProduction {
+        env = "production"
+    }
+
+    config.NewConfig(env)
+
     e := echo.New()
+    conn := config.NewDBConnection()
+    defer func() {
+        if err := conn.Close(); err != nil {
+            e.Logger.Fatal(fmt.Sprintf("Failed to close: %v", err))
+        }
+    }()
 
-    e.Use(middleware.CORS())
-    e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-
-    e.Static("/public", "public")
-    e.POST("/signup", handlers.Signup)
-    e.POST("/login", handlers.Login)
-    e.GET("/user", handlers.GetUsers)
-    e.GET("/user/:id", handlers.GetUser)
-    e.GET("/service", handlers.GetServices)
-    e.GET("/service/:id", handlers.GetServices)
-
-    guarded := e.Group("")
-    guarded.Use(middleware.JWTWithConfig(authorizer.JwtConfig))
-
-    guarded.GET("/me", handlers.Me)
-    guarded.POST("/service", handlers.CreateService)
-    guarded.PUT("/service/:id", handlers.UpdateService)
+    h := handler.NewAppHandler(conn)
+    router.NewRouter(e, h)
 
     e.Logger.Fatal(e.Start(":1323"))
 }

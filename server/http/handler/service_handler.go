@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"net/http"
@@ -10,7 +10,22 @@ import (
 	"github.com/hirokikojima/go-sample-app/utilities/storage"
 )
 
-func GetServices(c echo.Context) error {
+type ServiceHandler interface {
+	GetServices(c echo.Context) error
+	GetService(c echo.Context) error
+	CreateService(c echo.Context) error
+	UpdateService(c echo.Context) error
+}
+
+type serviceHandler struct {
+	conn *gorm.DB
+}
+
+func NewServiceHandler(conn *gorm.DB) ServiceHandler {
+	return &serviceHandler{conn}
+}
+
+func (h *serviceHandler) GetServices(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
@@ -31,7 +46,12 @@ func GetServices(c echo.Context) error {
 	return cc.JSON(http.StatusOK, services)
 }
 
-func CreateService(c echo.Context) error {
+func (h *serviceHandler) GetService(c echo.Context) error {
+	cc := NewCustomContext(c)
+	return cc.JSON(http.StatusOK, echo.Map{})
+}
+
+func (h *serviceHandler) CreateService(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
@@ -60,7 +80,7 @@ func CreateService(c echo.Context) error {
 	return cc.JSON(http.StatusOK, service)
 }
 
-func UpdateService(c echo.Context) error {
+func (h *serviceHandler) UpdateService(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 

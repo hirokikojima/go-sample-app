@@ -1,4 +1,4 @@
-package handlers
+package handler
 
 import (
 	"net/http"
@@ -10,7 +10,21 @@ import (
 	"github.com/hirokikojima/go-sample-app/utilities/database"
 )
 
-func Signup(c echo.Context) error {
+type AuthHandler interface {
+	Signup(c echo.Context) error
+	Signin(c echo.Context) error
+	Me(c echo.Context) error
+}
+
+type authHandler struct {
+	conn *gorm.DB
+}
+
+func NewAuthHandler(conn *gorm.DB) AuthHandler {
+	return &authHandler{conn}
+}
+
+func (h *authHandler) Signup(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
@@ -43,7 +57,7 @@ func Signup(c echo.Context) error {
 	})
 }
 
-func Login(c echo.Context) error {
+func (h *authHandler) Signin(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
@@ -70,7 +84,7 @@ func Login(c echo.Context) error {
 	})
 }
 
-func Me(c echo.Context) error {
+func (h *authHandler) Me(c echo.Context) error {
 	db := database.ConnectDatabase()
 	defer db.Close()
 
